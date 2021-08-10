@@ -1,29 +1,17 @@
 import random
 max_num = 3
 
+
 def shuffle(current_shuffle, remaining_shuffle):
     if len(current_shuffle) == max_num:
         for item in current_shuffle:
             print(item, end=' ')
         print()
     else:
-        if len(current_shuffle) == 0:
-            for i in range(0, 10):
-                new_order = current_shuffle.copy() # Make a copy.
-                new_order.append(remaining_shuffle['1'][i])
-                shuffle(new_order, remaining_shuffle)
-                
-        elif len(current_shuffle) == 1:
-            for i in range(0, 10):
-                new_order = current_shuffle.copy() # Make a copy.
-                new_order.append(remaining_shuffle['2'][i])
-                shuffle(new_order, remaining_shuffle)
-                
-        elif len(current_shuffle) == 2:
-            for i in range(0, 10):
-                new_order = current_shuffle.copy() # Make a copy.
-                new_order.append(remaining_shuffle['3'][i])
-                shuffle(new_order, remaining_shuffle)
+        for i in range(0, 10):
+            new_order = current_shuffle.copy() # Make a copy.
+            new_order.append(remaining_shuffle[str(len(current_shuffle) + 1)][i])
+            shuffle(new_order, remaining_shuffle)
 
 def random_shuffle(categories):
     num1 = random.randint(0, 9)
@@ -57,6 +45,7 @@ def main():
             option = input("Please choose another input: ")
         else:
             print("Please choose from one of the options. {} is not a valid option.".format(option))
+            option = input("Please choose another input: ")
         
 if __name__ == '__main__':
     main()
